@@ -6,4 +6,4 @@ I used everything I learned from coding and designing during this journey to cre
 Omnifood is an AI-powered subscription that will make you eat healthy again, 365 days per year. It's tailored to your tastes and nutrientional needs.
 
 You can check it here:
-https://omnifood-afsa.netlify.app
+https://ahmedafsa.github.io/Omnifood.github.io/
