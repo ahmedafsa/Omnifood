@@ -1,16 +1,17 @@
-console.log("Hello world!");
-
 const yearEl = document.querySelector(".year");
 const currentYear = new Date().getFullYear();
-console.log(currentYear);
+const btnNavEl = document.querySelector(".btn-mobile-nav");
+const nav = document.querySelector(".header");
+const headerEl = document.querySelector(".header");
+const heroSection = document.querySelector(".section-hero");
+
+// Update the year in copyright
 yearEl.textContent = currentYear;
 
 ///////////////////////////////////////////////////////////
 
 // !Make the mobile navigation works
-const btnNavEl = document.querySelector(".btn-mobile-nav");
-const nav = document.querySelector(".header");
-const headerEl = document.querySelector(".header");
+
 btnNavEl.addEventListener("click", function () {
   headerEl.classList.toggle("nav-open");
 });
@@ -18,30 +19,19 @@ btnNavEl.addEventListener("click", function () {
 ///////////////////////////////////////////////////////////
 
 // ! Sticky navigation
+const obsFunction = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) nav.classList.add("sticky");
+  else nav.classList.remove("sticky");
+};
 
-// const sectionHeroEl = document.querySelector(".section-hero");
+const navObserver = new IntersectionObserver(obsFunction, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${getComputedStyle(headerEl).height}`,
+});
 
-// const obs = new IntersectionObserver(
-//   function (entries) {
-//     const ent = entries[0];
-//     console.log(ent);
-
-//     if (ent.isIntersecting === false) {
-//       document.body.classList.add("sticky");
-//     }
-
-//     if (ent.isIntersecting === true) {
-//       document.body.classList.remove("sticky");
-//     }
-//   },
-//   {
-//     // In the viewport
-//     root: null,
-//     threshold: 0,
-//     rootMargin: "-80px",
-//   }
-// );
-// obs.observe(sectionHeroEl);
+navObserver.observe(heroSection);
 
 ///////////////////////////////////////////////////////////
 // ! Fixing flexbox gap property missing in some Safari versions
